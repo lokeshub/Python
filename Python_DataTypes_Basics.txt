@@ -1,0 +1,59 @@
+1)#IMP#
+Python is Dynamically and Strongly typed.
+
+Dynamically typed 
+in a dynamically typed language, a variable is simply a value 
+bound to a name; the value has a type -- 
+like "integer" or "string" or "list" -- but the variable itself 
+doesn't. You could have a variable which, 
+right now, holds a number, and later assign a string to it if 
+you need it to change. 
+
+In a statically typed language, 
+the variable itself has a type; 
+
+and strongly typed
+But in a strongly-typed language you can't do 'Hello' + 5 + 'Goodbye', 
+because there's no defined way to "add" strings and numbers to each other.
+
+2)
+type() -->> gives the datatype of a variable
+eg:
+>>> print (b)
+6
+>>> type(b)
+<class 'int'>
+
+3)#IMP
+isinstance()  -->> tests for datatype of a variable
+eg:
+>>> p=3.14
+>>> isinstance(p,float)
+True
+>>> type(p)
+<class 'float'>
+
+4)
+Type conversion: can only be done if compatible(float->int...'100' to int 100)
+Example:
+>>> f=3.14
+>>> i=int(f)
+>>> i
+3
+>>> i=float('5.56')
+>>> i
+5.56
+
+# convertable Float to Int and then Int to String
+>>> F = 100.59
+>>> s = str(int(F))
+>>> s
+'100'
+
+
+5)
+#IMP
+import sys    
+sys.stdout.write (string1)
+sys.stdout.write (string2)
+#to avoid the newline or space between string1 and string2
