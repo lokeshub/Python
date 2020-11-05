@@ -1,0 +1,86 @@
+1)
+mutable sequence of data structure (can be appended,reduced)
+
+2) #IMP operations on list
+-append-clear-copy-count-extend-insert-pop-remove-reverse-sort
+example:
+>>> alist = ['pulsar',150,'bajaj',25000,9.8]
+>>> alist
+['pulsar', 150, 'bajaj', 25000, 9.8]
+>>> alist.append('lokesh')
+>>> alist
+['pulsar', 150, 'bajaj', 25000, 9.8, 'lokesh']
+
+>>> alist.clear()
+>>> alist
+[]
+
+>>> alist = ['pulsar',150,'bajaj',25000,9.8]
+>>> alist2 = alist.copy()
+>>> alist2
+['pulsar', 150, 'bajaj', 25000, 9.8]
+
+>>> alist.count(150)
+1
+
+>>> alist.extend('lokesh')
+>>> alist
+['pulsar', 150, 'bajaj', 25000, 9.8, 'l', 'o', 'k', 'e', 's', 'h']
+
+>>> alist = alist2.copy()
+>>> alist.index(150)
+1
+
+#To insert at a index
+>>> alist.insert(2,'lokesh')
+>>> alist
+['pulsar', 150, 'lokesh', 'bajaj', 25000, 9.8]
+
+# pops element from the end of list
+>>> alist.pop()
+9.8
+>>> alist
+['pulsar', 150, 'lokesh', 'bajaj', 25000]
+
+>>> alist.remove('lokesh')
+>>> alist
+['pulsar', 150, 'bajaj', 25000]
+
+>>> alist.reverse()
+>>> alist
+[25000, 'bajaj', 150, 'pulsar']
+
+3) #IMP
+sorting requires all elements should be same datatype
+>>> alist[0]=str(alist[0])
+>>> alist
+['25000', 'bajaj', 150, 'pulsar']
+>>> alist[2]=str(alist[2])
+>>> alist
+['25000', 'bajaj', '150', 'pulsar']
+>>> alist.sort()
+>>> alist
+['150', '25000', 'bajaj', 'pulsar']
+
+4)
+#IMP# when not specified multiple spaces are considered one
+>>> line = "A line      with          multiple spaces"
+>>> line.split()
+['A', 'line', 'with', 'multiple', 'spaces']
+
+5) #IMP inplace sort v/s copied sort
+Sorting a list
+>>> data = [6, 3, 1, 2, 5, 4]
+>>> data
+[6, 3, 1, 2, 5, 4]
+>>> data.sort() #Inplace sort
+>>> data
+[1, 2, 3, 4, 5, 6]
+>>> data = [6, 3, 1, 2, 5, 4]
+>>> data
+[6, 3, 1, 2, 5, 4]
+>>> data2 = sorted(data)
+>>> data2
+[1, 2, 3, 4, 5, 6]
+>>> data
+[6, 3, 1, 2, 5, 4]
