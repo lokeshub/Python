@@ -1,0 +1,73 @@
+1)#IMP
+(Tuples) =  a sequence, like strings have indexed elements, 
+			tuple is indexed elements
+	= an ordered set of data, eg: a single row in DB table
+	= an immutable list (can not be modified)
+	= ordered collection of arbitrary objects
+	-- good for storing static data 
+
+2)
+example:
+atuple = ('perl','ruby','python',3.14,3000)	
+
+3)
+- Tuples are comparable
+
+4)
+-#IMP#
+Slcing tuples
+For example have positions like this
+ 0         1        2   3 
+('Lokesh','Purohit',8.6,26)
+-4        -3        -2  -1
+
+>>> atuple = ('Lokesh','Purohit',8.6,26)
+>>> atuple
+('Lokesh', 'Purohit', 8.6, 26)
+>>> atuple[1:3]
+('Purohit', 8.6)
+>>> atuple[-3:-1]
+('Purohit', 8.6)
+
+#IMP#
+	after colon if its 3 then only upto 2 will be printed
+	after colon if its -1 then up -2 will be printed
+
+5)
+#IMP#
+	-tuples can NOT be appended, exteded, inserted, remove, pop 
+		(these all possible with list)
+	- len(<tuple_name>) works
+	- list(<tuple_name>) works
+	- tuple(<listname>) works
+    
+6)
+example:
+>>> len(atuple)
+4
+>>> list(atuple)
+['Lokesh', 'Purohit', 8.6, 26]
+>>> alist= list(atuple)
+>>> type(alist)
+<class 'list'>
+>>> alist
+['Lokesh', 'Purohit', 8.6, 26]
+>>> atuple
+('lokesh', 'purohit', 8.6, 26)
+>>> type(atuple[2])
+<class 'float'>
+
+7)
+Operations on tuple
+	>>> atuple
+	('lokesh', 'purohit', 8.6, 26)
+	>>> atuple.count(8.6)
+	1
+	>>> atuple.index('purohit')
+	1
+
+8)
+-#IMP
+Advantage of tuples
+	-tuples are faster than lists
+	- write protected data
