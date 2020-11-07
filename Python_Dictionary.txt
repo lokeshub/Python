@@ -1,0 +1,132 @@
+1)
+-Mutable, UNORDERED set of KEY:VALUE pairs
+#IMP# dictionary is UNORDERED, (not in sequence)
+
+2)
+example:
+adict = {'one':'uno','two':'dos','three':'tres'}
+>>> len(months)
+3
+
+3) #IMP
+dictionary operations
+-slicing not allowed because they are unordered
+-clear-copy-get-items-  (ALLOWED OPERATIONS)
+
+4)
+#IMP
+The items() method in dictionaries returns 
+a list of (key,value) tuples
+>>> dict
+{1: 'one', 2: 'two', 3: 'three'}
+>>> dict.items()
+dict_items([(1, 'one'), (2, 'two'), (3, 'three')])
+
+>>> for (k,v) in dict.items():
+	print("key: " + str(k) + "and value:" + v)
+
+key: 1and value:one
+key: 2and value:two
+key: 3and value:three
+
+5)
+#IMP example:
+>>> months = {1:"Jan", 2:"Feb", 3:"Mar"}
+>>> months
+{1: 'Jan', 2: 'Feb', 3: 'Mar'}
+>>> months.get(2)
+'Feb'
+
+6)
+>>> months.items()
+dict_items([(1, 'Jan'), (2, 'Feb'), (3, 'Mar')])
+
+>>> months.keys()
+dict_keys([1, 2, 3])
+
+>>> months.values()
+dict_values(['Jan', 'Feb', 'Mar'])
+
+>>> months.pop(2)
+'Feb'
+>>> months
+{1: 'Jan', 3: 'Mar'}
+
+>>> months.popitem()
+(1, 'Jan')
+>>> months
+{3: 'Mar'}
+>>> months[1]='Jan'
+>>> months[4]='April'
+>>> months
+{1: 'Jan', 3: 'Mar', 4: 'April'}
+>>> months[2]="Feb"
+>>> months
+{1: 'Jan', 2: 'Feb', 3: 'Mar', 4: 'April'}
+>>> months[2]="Dec"
+>>> months
+{1: 'Jan', 2: 'Dec', 3: 'Mar', 4: 'April'}
+>>> 1 in months
+True
+
+7)
+#IMP
+Sort using sorted() (sort by keys)
+>>> months= {"jan":1,"feb":2,"mar":3,"apr":4}
+>>> months
+{'apr': 4, 'jan': 1, 'feb': 2, 'mar': 3}
+>>> months.items()
+dict_items([('apr', 4), ('jan', 1), ('feb', 2), ('mar', 3)])
+>>> sorted(months.items())
+[('apr', 4), ('feb', 2), ('jan', 1), ('mar', 3)]
+
+8)
+#IMP
+#sort by values. Need a temp list
+>>> months.items()
+dict_items([('apr', 4), ('jan', 1), ('feb', 2), ('mar', 3), ('may', 5)])
+>>> for (k,v) in months.items():
+	tmp.append( (v,k) )
+
+>>> tmp
+[(4, 'apr'), (1, 'jan'), (2, 'feb'), (3, 'mar'), (5, 'may')]
+
+# Now tmp has values,key pair, and sort greatest first(descending order)
+>>> tmp.sort(reverse=True)  #IMP
+>>> tmp
+[(5, 'may'), (4, 'apr'), (3, 'mar'), (2, 'feb'), (1, 'jan')]
+
+9)#IMP
+setdefault it is like get but if the key wasn't present then it is also set:
+>>> months
+{1: 'jan', 2: 'feb', 3: 'mar'}
+>>> months.setdefault(4,'apr')
+'apr'
+>>> months
+{1: 'jan', 2: 'feb', 3: 'mar', 4: 'apr'}
+
+10) #IMP
+fromkeys, create a new dictionary with keys from sequence:
+example:
+seq = ('name', 'age', 'sex')
+
+dict = dict.fromkeys(seq)
+print "New Dictionary : %s" %  str(dict)
+
+dict = dict.fromkeys(seq, 10)
+print "New Dictionary : %s" %  str(dict)
+
+o/p:
+New Dictionary : {'age': None, 'name': None, 'sex': None}
+New Dictionary : {'age': 10, 'name': 10, 'sex': 10}
+
+11) #IMP Merge dictionaries
+>>> d1 = {"a":1, "b":2}
+>>> d2 = {"c":3, "d":4}
+>>> 
+>>> dict(d1, **d2)
+{'a': 1, 'b': 2, 'c': 3, 'd': 4}
+>>> 
+>>> {**d1, **d2}
+{'a': 1, 'b': 2, 'c': 3, 'd': 4}
+
