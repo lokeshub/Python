@@ -1,0 +1,59 @@
+1)
+set
+internally python maintains dictionary to keep set
+
+2)
+set examples
+-
+# Union (update)
+>>> s1
+{1, 2, 3, 4}
+>>> s2
+{'n', 'p', 'h', 'o', 'y', 't'}
+>>> s1.update(s2)
+>>> s2
+{'n', 'p', 'h', 'o', 'y', 't'}
+>>> s1
+{1, 2, 3, 4, 'n', 'p', 'h', 'o', 'y', 't'}
+
+3)
+# pops an element randomly #IMP
+>>> s1.pop()
+1
+
+# remove
+>>> s1
+{3, 4, 'n', 'p', 'h', 'o', 'y', 't'}
+>>> s1.remove('o')
+>>> s1
+{3, 4, 'n', 'p', 'h', 'y', 't'}
+
+#in #IMP
+>>> 4 in s1
+True
+>>> 5 in s1
+False
+
+#clear
+>>> s1.clear()
+>>> s1
+set()
+
+#union#intersection#-(difference)#
+>>> s1 = {'a', 'b', 'c', 'd', 'e'}
+>>> s2 = {'c', 'e', 'x', 'y', 'z'}
+>>> s1.intersection(s2)
+{'c', 'e'}
+>>> s1-s2  #difference
+{'b', 'a', 'd'}
+>>> s1.update({'p','q','r'}) #update
+>>> s1
+{'b', 'd', 'q', 'e', 'r', 'p', 'a', 'c'}
+
+4) #Check if a set is subset of another
+set({"Back in Black", "AC/DC"}).issubset(album_set1) 
+
+5) #Check if superset
+album_set1.issuperset({"Back in Black", "AC/DC"})  
+
+6)
