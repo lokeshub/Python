@@ -1,0 +1,135 @@
+1)
+String variables can have 'single quote' or "double quote"
+
+2) #IMP
+quotes , no difference for single or double quote but to use 
+in between 
+eg:
+>>> print ("Hello 'Lokesh Purohit' !")
+Hello 'Lokesh Purohit' !
+>>> print ('Hello "Lokesh Purohit" !')
+Hello "Lokesh Purohit" !
+
+3)
+String operations
+len(str)
++  -->> concatenates
+s * 5   --->> repetitions
+str(i)  -->> typecast
+
+4)#IMP
+Slicing
+eg:
+>>> name = 'Lokesh Purohit'
+>>> name[4]
+'s'
+>>> name[4:6]
+'sh'
+>>> name[-5:-2]
+'roh'
+>>> name[-5:2]
+''
+>>> name[-5:12]
+'roh'
+>>> name[:8]
+'Lokesh P'
+>>> name[8:]
+'urohit'
+
+5) #IMP
+Operations
+>>> name.find('o')
+1
+>>> name.lower()
+'lokesh purohit'
+>>> name.upper()
+'LOKESH PUROHIT'
+>>> name.split()
+['Lokesh', 'Purohit']
+>>> name.split()
+['lokesh', 'purohit']
+>>> name.split('e')
+['lok', 'sh purohit']
+
+6)
+#IMP# when not specified multiple spaces are considered one
+>>> line = "A line      with          multiple spaces"
+>>> line.split()
+['A', 'line', 'with', 'multiple', 'spaces']
+
+7)
+Strings are immutable:
+>>> a = 'abc'
+>>> a
+'abc'
+>>> a = a + 'abc'
+>>> a
+'abcabc'
+>>> 
+
+8)
+Operations
+>>> str1 = 'this is a sample string'
+>>> str1.capitalize()
+'This is a sample string'
+>>> str1.count('is')
+2
+>>> str1.find('amp')
+11
+>>> str1.index('amp')
+11
+>>> str1.find('is')
+2
+>>> str1.isupper()
+False
+>>> str1.upper()
+'THIS IS A SAMPLE STRING'
+>>> str1.title()
+'This Is A Sample String'
+>>> str2 = '    ' + str1 + '    '
+>>> str2
+'    this is a sample string    '
+>>> str2.lstrip()
+'this is a sample string    '
+>>> str2.rstrip()
+'    this is a sample string'
+>>> str2.strip()
+'this is a sample string'
+>>> str1.replace('sample','test')
+'this is a test string'
+
+9) #IMP
+Splitting
+>>> numbers = '1,2,3,4'
+>>> numbers
+'1,2,3,4'
+>>> numbers.split(,)
+SyntaxError: invalid syntax
+>>> numbers.split(',')
+['1', '2', '3', '4']
+>>> 
+
+10) #IMP
+Joining
+>>> days = ['Mon','Tue','Wed']
+>>> days
+['Mon', 'Tue', 'Wed']
+>>> weekdays = ' '.join(days)
+>>> weekdays
+'Mon Tue Wed'
+
+11) #IMP
+Formatting
+>>> str = "%s has marks %d in English" % ('Tim',40)
+>>> str
+'Tim has marks 40 in English'
+
+>>> strstr2 = "{0} has marks {1} in English".format('Tim',40)
+>>> strstr2
+'Tim has marks 40 in English'
+>>> strstr2 = "{0} has marks {1} in English".format(40,'Tim')
+>>> strstr2
+'40 has marks Tim in English'
+
+12) #IMP in python version >=3.6
+strToPrint = "{username} is of age {ageInYears}"
