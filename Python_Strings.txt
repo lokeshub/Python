@@ -131,5 +131,5 @@ Formatting
 >>> strstr2
 '40 has marks Tim in English'
 
-12) #IMP in python version >=3.6
-strToPrint = "{username} is of age {ageInYears}"
+12) #IMP in python version >=3.6 f string method
+strToPrint = f"{username} is of age {ageInYears}"
