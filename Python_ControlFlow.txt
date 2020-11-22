@@ -1,0 +1,74 @@
+1)
+-if-elif-else
+"or" example:
+def sleep_in(weekday, vacation):
+  if not weekday or vacation:
+    return True
+
+"and" example:    
+def sleep_in(weekday, vacation):
+    if weekday == True and vacation == False:
+        return False
+
+2) #IMP for loop also has an else
+For Loop:
+for var iterable:
+	# loop body using var
+else:
+	# invoked if no break
+  
+#iterable can be .. string, list, tuple, dictionary.. 
+can be range(0,5) #IMP
+  
+3)
+example:
+>>> for name in ('cat','boy','dog'):
+	print("name : ", name)
+
+	
+name :  cat
+name :  boy
+name :  dog
+
+4) #IMP
+>>> for t in [('math',99),('english',80)]:
+	print ("Current t is :",t)
+
+	
+Current t is : ('math', 99)
+Current t is : ('english', 80)
+
+>>> for (a,b) in [('math',99),('english',80)]:
+	print('a is ',a,' b is ',b)
+
+	
+a is  math  b is  99
+a is  english  b is  80
+
+5)
+>>> f = open('C:/temp2/test.txt')
+>>> for line in f:
+	print (line)
+
+	
+this is first line
+
+thsi is second line
+
+this is third line
+
+6) #IMP continue starts from the next itereation
+While Loop:
+example:
+>>> x = 0
+>>> x
+0
+>>> y
+13
+>>> while x<y:
+	x += 1
+	if x==5:
+		continue
+	print (x)
+    
+7)
