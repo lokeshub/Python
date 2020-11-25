@@ -1,0 +1,176 @@
+1) #IMP
+>>> import os
+>>> os.chdir("c:\\texts\\python\\test")
+>>> os.getcwd()
+'c:\\texts\\python\\test'
+>>> os.listdir()
+['one.txt', 'two.txt']
+>>> os.path.abspath('two.txt')
+'c:\\texts\\python\\test\\two.txt'
+>>> os.path.relpath('one.txt')
+'one.txt'
+>>> os.path.dirname('c:\\texts\\python\\test\\two.txt')
+'c:\\texts\\python\\test'
+>>> os.path.basename('c:\\texts\\python\\test\\two.txt')
+'two.txt'
+>>> os.path.exists("c:\\perl")
+False
+
+os.path.ispath()
+os.path.relpath()
+os.path.isdir()
+XXXXXXXX os.makedir() XXXXXXXX wrong #IMP
+os.mkdir()
+os.makedirs()   #this has 's' at the end
+
+2)Read from a files #IMP
+>>> fh = open("two.txt")
+>>> content = fh.read()
+>>> content
+'this is a sample \nfile\nwith sample text\ntest\ntext1\ntext2\nlokesh\ntext3\nrajasthan\ncomputer\n'
+
+3)  get contents into a list #IMP
+>>> content = fh.readlines()
+>>> content
+['this is a sample \n', 'file\n', 'with sample text\n', 'test\n', 
+'text1\n', 'text2\n', 'lokesh\n', 'text3\n', 'rajasthan\n', 'computer\n']
+
+4)append and write mode
+fh = open("path",'a')
+fh.write("Hello")
+
+5) Shelve
+>>> import shelve
+>>> shelfFile = shelve.open('mydata.txt')
+>>> shelfFile['cats'] = ["Zophie", "Pooka", "Simon", "Miao", "Flat-tail"]
+
+6) shutil for copy and move #IMP
+>>> import shutil
+>>> shutil.copy('two.txt', 'three.txt')
+'three.txt'
+>>> shutil.move('three.txt', 'four.txt')
+'four.txt'
+
+shutil.copytree("directory", "newpath") #copy a dir
+
+7) deleting file or dir
+os.unlink('filename')
+os.rmdir('dirpath')  #works if its empty
+
+#To delete a directory that is not empty
+import shutil
+shutil.rmtree("folder_name")
+
+8)#Walking a directory tree
+import os
+os.walk('dir_name')
+
+
+1)
+>>> f = open('C:/temp2/test.txt')
+>>> for line in f:
+	print (line)
+
+	
+this is first line
+
+thsi is second line
+
+this is third line
+
+2)#IMP
+>>> os.chdir('c:\\temp2')
+>>> os.getcwd()
+'c:\\temp2'
+>>> data = open('sketch.txt')
+>>> print (data.readline(),end='')
+hi man
+>>> print (data.readline())
+
+>>> data.seek(0)  #IMP
+0
+>>> print (data.readline())
+hi man
+
+OR
+>>> for each_line in data:
+	print(each_line,end='')
+
+	
+oh so this is how it works
+    and what about this line
+    
+>>> data.close()    
+
+3. #IMP
+When you use access mode w, Python opens your named file
+for writing. If the file already exists, it is cleared of its contents, or clobbered. To append to a file, use access mode a, and to open a
+file for writing and reading (without clobbering), use w+. If you
+try to open a file for writing that does not already exist, it is first
+created for you, and then opened for writing.
+
+4. #IMP writing to a file:
+>>> out = open("new.txt","w")
+>>> print ("This is a test data." , file=out)
+>>> out.close()
+#IMP close is very important when writing to files to flush the data
+
+5.
+Because the use of the try/except/finally pattern is so common when it comes to working with files, Python includes a statement that abstracts away some of the details. The with statement, when used with files, can
+dramatically reduce the amount of code you have to write, because it negates the need to include a finally suite to handle the closing of a potentially opened data file.
+
+#Example: #IMP
+try:
+    data = open('its.txt', "w")
+    print("It's...", file=data)
+except IOError as err:
+    print('File error: ' + str(err))
+finally:
+    if 'data' in locals():
+        data.close()
+
+        #Can be written as below
+try:
+    with open('its.txt', "w") as data:
+        print("It's...", file=data)
+except IOError as err:
+    print('File error: ' + str(err))        
+        
+#IMP When you use with, you no longer have to worry about closing
+any opened files, as the Python interpreter automatically takes 
+care of this for you.
+
+6.#IMP
+The 'with' statement automatically arranges to close all opened 
+files, even when exceptions occur. The 'with' statement uses 
+the 'as' keyword, too.
+
+7.The standard library’s pickle module lets you easily and 
+efficiently save and restore Python data objects to disk.
+ The pickle.dump() function saves data to disk.
+ The pickle.load() function restores data from disk.
+
+8. #During the I/O process, data is buffered: this means that it is held in a 
+temporary location before being written to the file.
+
+Python doesn't flush the buffer—that is, write data to the file—until it's sure you're done writing. 
+One way to do this is to close the file. 
+If you write to a file without closing, the data won't make it to the target file.
+
+9. file objects contain a special pair of built-in methods: __enter__() and __exit__(). 
+When a file object's __exit__() method is invoked, it automatically closes 
+the file. How do we invoke this method? With with and as.
+
+#syntax:
+with open("file", "mode") as variable:
+  # Read or write to the file
+#Example:
+with open("text.txt", "w") as textfile:
+  textfile.write("Success!")
+  
+#Example to read:
+>>> with open("new.txt", "r") as textfile:
+	textfile.read()
+
+	
+'This is test data\n'
