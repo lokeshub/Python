@@ -1,0 +1,115 @@
+0) raise #IMP
+>>> raise Exception("This may end the world!")
+Traceback (most recent call last):
+  File "<pyshell#3>", line 1, in <module>
+    raise Exception("This may end the world!")
+Exception: This may end the world!
+
+1) #IMP traceback, can be used to log error instead of ending program
+
+import traceback
+>>> try:
+	raise Exception("Something is wrong")
+except:
+	errlog = traceback.format_exc()
+	print("*********")
+	print(errlog)
+
+2) assert example (if assert fails code must fail)
+assertions are for programmers error that are not meant to be recovered. #IMP
+
+>>> assert False, "This displayed because of 'False'"
+Traceback (most recent call last):
+  File "<pyshell#20>", line 1, in <module>
+    assert False, "This displayed because of 'False'"
+AssertionError: This displayed because of 'False'
+>>> assert 6 < 4, "Incorrect"
+Traceback (most recent call last):
+  File "<pyshell#21>", line 1, in <module>
+    assert 6 < 4, "Incorrect"
+AssertionError: Incorrect
+
+3) 
+	
+*********
+Traceback (most recent call last):
+  File "<pyshell#19>", line 2, in <module>
+Exception: Something is wrong
+
+4) logging module #IMP
+>>> import logging
+>>> logging.basicConfig(level=logging.DEBUG, format='%(asctime)s = %(levelname)s - %(message)s')
+
+5) 
+logging.disable(logging.CRITICAL)
+#above statement disable all the logging level
+
+6) there are different levels
+logging.debug, .info, .warning, .error, .critical
+lower --> higher level
+
+7) If you want to just disable debug messages but want to log info/warning/error/critical
+logging.disable(logging.DEBUG)
+
+8) #IMP example of log logExample.py
+import logging
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+
+logging.disable(logging.DEBUG)
+
+logging.debug('Start of program')
+
+def factorial(n):
+    logging.debug('Start of factorial(%s)' %(n))
+    total = 1
+    for i in range(1, n + 1):
+        total *= i
+        logging.critical('i is %s, total is %s' % (i, total))
+
+    logging.debug('Return value is %s' % (total))
+    return (total)
+
+print(factorial(5))
+
+logging.debug('End of Program')
+
+9) #IMP to write logs to a file, just include filename in basicConfig
+logging.basicConfig(filename='myProgramLog.log',level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+
+10) Debug : Debuger from Debug menu
+11) 
+
+
+1)
+#IMP#
+-set comprehension
+>>> s1 = set([2,3,5,7,11])
+>>> type(s1)
+<class 'set'>
+>>> s2 = {i*2 for i in s1}
+>>> s2
+{14, 10, 4, 6, 22}
+>>> 
+
+2)#IMP
+-List comprehension
+>>> alist = ['BOY','CaT','dog']
+>>> list_comp = [x.lower() for x in alist]
+>>> list_comp
+['boy', 'cat', 'dog']
+
+3) #IMP
+#Advanced comprehension
+>>> newlist = [[x.upper(),x.lower(),len(x)] for x in alist]
+>>> newlist
+[['BOY', 'boy', 3], ['CAT', 'cat', 3], ['DOG', 'dog', 3]]
+
+4) #IMP
+#Dictionary comprehension
+>>> dic1= {'ax':1, 'by':2, 'cz':3}
+>>> dic2 = {value:key for key,value in dic1.items()}
+>>> dic2
+{1: 'ax', 2: 'by', 3: 'cz'}
+>>> 
+#IMP ^^ above is one way to get key:value -> value:key dictionary
+removes duplicate key in new dict, so be careful if values are duplicate
