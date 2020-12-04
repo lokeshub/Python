@@ -1,0 +1,80 @@
+1)
+import math
+    math.pi
+    math.sqrt(9)
+import random
+    random.randrange(1,10)
+    num = random.randint(1,20)
+import sys
+import os
+
+2) #IMP
+When you use a plain import statement, such as import printer,
+the Python interpreter is instructed to allow you to access printer’s
+functions using namespace qualification. However, it is possible to be
+more specific. If you use from printer import print_lol, the
+specified function (print_lol in this case) is added to the current
+namespace, effectively removing the requirement for you to use
+namespace qualification. But you need to be careful. If you already have
+a function called print_lol defined in your current namespace, the
+specific import statement overwrites your function with the imported
+one, which might not be the behavior you want.
+
+
+3)#IMP
+To create own module:
+    0. Begin by creating a folder OMV
+    1. create and save your module with proper comments as .py file
+    2. copy omv.py module file intot the OMV folder.
+    3. create a setup.py in new folder, this file has meta data about distribution.
+    eg:
+        from distutils.core import setup
+        
+        setup(
+        name = 'omv',
+        version = '1.0.0',
+        py_modules = ['omv'],
+        author = 'myusername',
+        author_email = 'myusername@mydomain.com',
+        url = 'http://www.mywebsite.com',
+        description = 'A simple filter for files',
+        )
+    4. Go to OMV folder and run below command:
+        $ python3 setup.py sdist
+        OR on windows
+        c:\Python31\python.exe setup.py sdist
+        
+        A collection of status messages appears on screen, 
+        confirming the creation of your distribution.
+
+    5. Install your distribution into your local copy of python
+    $ python3 setup.py install
+    After setup you will see below in your OMV directory
+        MANIFEST
+        build->lib->omv.py
+        dist->omv-1.0.0.tar.gz
+        omv.py
+        omv.pyc
+        setup.py
+     6. 
+        To use a module simply import it
+        import omv
+     7. To call a function:
+        omv.printFunction() #namespace qualification
+     8. If you use from omv import printFunction, function is added to current
+     namespace, effectively removing requirement for you to use namesapce qualification
+     9. Register with pypi website:
+     http://pypi.python.org/
+     request for a pypi id.
+     10. Upload your code to pypi
+     $ python3 setup.py register
+     $ python3 setup.py sdist upload
+     11. For a re release open setup.py and 
+     $ python3 setup.py sdist upload
+     
+
+<Pending>
+
+4) Pyperclip module
+pyperclip.copy("Hello")
+pyperclip.paste()
