@@ -1,0 +1,157 @@
+1) #IMP
+help(isinstance)
+help(dict) #gives all detail of dictionary and its operations.
+
+2)
+Functions Vs Methods
+Methods: are bound with object eg: mylist.append('item')
+Functions: called independently eg: random.randint(1,10)
+
+3)
+Example
+>>> def uc(str):
+	UCase = str.upper()
+	return UCase
+
+>>> my = uc('lokesh')
+>>> my
+'LOKESH'
+
+#no return
+>>> def uc(str):
+	UCase = str.upper()
+    
+4)
+We can have default parameters
+
+5) #IMP
+If we are assigning which argument belongs to which parameter 
+then sequence doesn't matter from calling function
+
+eg:
+>>> def fun(name, location, year=2010):
+	nly = "%s/%s/%d" % (name,location,year) 
+    #nly = "First {0} Second {1} Year {2}".format(name,location,year)
+	print (nly)
+	return nly
+
+>>> fun('lokesh','bangalore')
+lokesh/bangalore/2010
+'lokesh/bangalore/2010'
+
+>>> fun(location='Delhi',name='purohit',year=2014)
+purohit/Delhi/2014
+'purohit/Delhi/2014'
+
+#IMP# Note above sequence of arg changed, also overriden default
+ year 
+
+6) #IMP
+arbitarary number of arguments (single * takes multiple arguments, ** takes keyword assignments)
+>>> def foo(a,b,*args,**kwargs):
+	print ("Here is a",a)
+	print ("Here is b",b)
+	print ("Others '*args'",*args)
+
+	
+>>> foo('apple','boy','cat','dog','elephant')
+Here is a apple
+Here is b boy
+Others '*args' cat dog elephant
+
+##IMPExample with keyword assignment
+>>> def foo(a,b,*args,**kwargs):
+	print ("Here a:", a)
+	print ("Here b:", b)
+	print ("others: ", *args)
+	print ("Extra: ", kwargs)
+	print(type(kwargs))
+	print(type(args))
+
+	
+>>> foo("apple","boy","cat","dog","elephant",new="fish")
+Here a: apple
+Here b: boy
+others:  cat dog elephant
+Extra:  {'new': 'fish'}
+<class 'dict'> #IMP type of kwargs
+<class 'tuple'> #IMP type of args
+
+>>> foo("apple","boy","cat","dog","elephant",new="fish",old="goat")
+Here a: apple
+Here b: boy
+others:  cat dog elephant
+Extra:  {'old': 'goat', 'new': 'fish'}
+<class 'dict'>
+<class 'tuple'>
+
+
+7)
+variables are local by default. You can use global keyword to 
+make them global
+
+8) #IMP
+>>> import os
+>>> os.getcwd()
+'C:\\Python34'
+
+>>> os.chdir('C:/temp2')
+>>> os.getcwd()
+'C:\\temp2'
+
+>>> os.listdir(os.curdir)
+['1.pl', '2.pl', 'abhineet.txt', 'Neeraj_Job.txt', 'test.txt']
+
+>>> os.rename('2.pl','3.pl')
+>>> os.listdir(os.curdir)
+['1.pl', '3.pl', 'abhineet.txt', 'Neeraj_Job.txt', 'test.txt']
+
+9)#IMP
+-Others
+os.mkdir('dirname')
+os.rmdir('dirname')
+os.remove('file')
+
+10)
+-files
+wf = open('C:/temp2/read.txt','r')
+
+r-> read
+w-> write
+a-> append
+
+wf.write()
+wf.writeline() --> can be passed object like lists
+
+wf.read()  ---> read byte by byte
+wf.readline()  --> read one line at a time
+wf.readlines()  --> gives list of lines
+
+wf.close()
+
+11)
+-with for loop
+>>> for line in open('sample.txt','r'):
+	print(line)
+
+12)
+---using while----
+fp = open('filename.txt')
+while 1:
+    line = fp.readline()
+    if not line:
+        break
+    print line
+-------------------
+
+13)
+# 
+if line.startswith("pattern"):
+    continue
+#    
+if not "pattern" in line:
+    continue
+
+14)
+
+    
