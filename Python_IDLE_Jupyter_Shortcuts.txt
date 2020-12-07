@@ -1,0 +1,31 @@
+*********************************
+Q. IDLE
+*********************************
+1) Press Alt-P to recall the previous code statement entered into
+IDLE or press Alt-N to move to the next code statement
+(assuming there is one).
+Note: for Mac its Ctrl+P and Ctrl+N
+
+2)Type import sys;
+sys.path (all on one line) into the IDLE
+prompt to see the list of locations that your
+Python interpreter searches for modules.
+
+3)CTRL-L : To clear the console (only works with idleX)
+
+4)If above doesnt work then press CTRL-J for sometime then press ENTER
+
+*********************************
+R. jupyter 
+*********************************
+1).  Shortcuts
+Shift-Enter	(run cell, select below)
+Enter   (enter edit mode)
+Ctrl-Enter (run cell)
+K (select row above)
+J (select row below)
+X (cut selected cell)
+C (copy selected cell)
+Shift-v (paste above)
+v (paste below)
+z (undo last deletion)
