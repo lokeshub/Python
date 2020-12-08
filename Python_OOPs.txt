@@ -1,0 +1,499 @@
+0) #IMP
+do not forget self in class methods
+
+1) Classes and Instances
+class Employee:
+    def __init__(self, fname, lname, pay):
+        self.fname = fname
+        self.lname = lname
+        self.pay = pay
+        self.email = fname + "." + lname + "@company.com"
+    
+    def fullname(self):       #IMP method name needs self
+        return self.fname + " " + self.lname  #IMP Needs self
+
+emp1 = Employee("Bob", "Thomas", 5000)
+emp2 = Employee("Alice", "Sharma", 6000)
+
+print(emp1.email)
+print(emp2.email)
+print(emp1.fullname())   #IMP Needs () because its a method
+print(emp2.fullname())   #IMP self is passed as emp2 automatically
+print(Employee.fullname(emp2))  #IMP Same as above ,send emp2 as first argument using class Employee
+
+----o/p--------
+Bob.Thomas@company.com
+Alice.Sharma@company.com
+Bob Thomas
+Alice Sharma
+Alice Sharma
+
+2) #IMP Class variables
+class Employee:
+    num_of_employee = 0 #IMP is Class variable
+    raise_amount = 1.04  #IMP can be class or instance
+    
+    def __init__ (self, first, last, pay):
+        self.first = first
+        self.last = last
+        self.pay = pay
+        self.email = first + "." + last + "@company.com"
+        Employee.num_of_employee += 1  #using self doesn't help use Employee
+    
+    def fullname(self):
+        return first + " " + last
+    
+    def apply_raise(self):
+        self.pay = int(self.pay * self.raise_amount) #IMP use self
+		
+emp1 = Employee("Alice", "Sharma", 50000)
+emp2 = Employee("Bob", "Gupta", 60000)
+
+print(emp1.pay)
+emp1.apply_raise()
+print(emp1.pay)
+
+print(emp2.pay)
+emp2.raise_amount = 1.05
+emp2.apply_raise()
+print(emp2.pay)
+
+print(emp1.__dict__) #IMP prints the name space variables
+print(emp2.__dict__) #IMP prints name space vars where raise_amount is reassigned for emp2
+
+print(Employee.num_of_employee)
+
+----o/p--------
+50000
+52000
+60000
+63000
+{'first': 'Alice', 'last': 'Sharma', 'pay': 52000, 'email': 'Alice.Sharma@company.com'}
+{'first': 'Bob', 'last': 'Gupta', 'pay': 63000, 'email': 'Bob.Gupta@company.com', 'raise_amount': 1.05}
+2
+
+3) #IMP Class methods and static methods
+#IMP convention for 
+instance variable "self"
+class variable "cls"
+
+4) Classmethods can be used to create alternative constructors
+class Employee:
+    num_of_employee = 0
+    raise_amount = 1.04
+    
+    def __init__ (self, first, last, pay):
+        self.first = first
+        self.last = last
+        self.pay = pay
+        self.email = first + "." + last + "@company.com"
+        Employee.num_of_employee += 1  #using self doesn't help
+    
+    def fullname(self):
+        return first + " " + last
+    
+    def apply_raise(self):
+        self.pay = int(self.pay * self.raise_amount)
+        
+    @classmethod #Class method
+    def set_raise_amt(cls, amount):
+        cls.raise_amount = amount
+        
+    @classmethod #for alternate constructor
+    def from_string(cls, emp_str):
+        first, last, pay = emp_str.split('-')
+        return cls(first, last, pay)
+
+emp1 = Employee("Alice", "Sharma", 50000)
+emp2 = Employee("Bob", "Gupta", 60000)
+
+Employee.set_raise_amt(1.05)
+#emp1.set_raise_amt(1.05)  # we can run class method from instance
+
+print(Employee.raise_amount)
+print(emp1.raise_amount)
+print(emp2.raise_amount)
+
+newemp = Employee.from_string("John-Doe-70000")
+print(newemp.email)
+
+-----o/p------
+1.05
+1.05
+1.05
+John.Doe@company.com
+
+5) #IMP static methods
+#IMP static method doesn't take instance(self) or class(cls) variable
+
+example:
+    @staticmethod  
+    def is_workday(day):
+        if day.weekday() == 5 or day.weekday() == 6:
+            return False
+        else:
+            return True
+			
+import datetime
+
+my_date = datetime.date(2020, 7, 12)
+
+print(Employee.is_workday(my_date))
+
+------o/p------
+False
+
+6) #IMP
+Method resolution: If python doesn't find constructor in inherited class
+it walks up the inheritance path to parent class
+
+7) #IMP
+builtins.object: every class in python inherits from this class
+
+8) #IMP
+print(help(Developer)
+#this will give 
+#Method resolution order, Methods from parent class, own methods
+#attributes inherited from parent class and own attributes
+
+9) #IMP Inheritance
+class Employee:
+    num_of_employee = 0
+    raise_amount = 1.04
+
+    def __init__(self, first, last, pay):
+        self.first = first
+        self.last = last
+        self.pay = pay
+        self.email = first + "." + last + "@company.com"
+        Employee.num_of_employee += 1  # using self doesn't help
+
+    def fullname(self):
+        return self.first + " " + self.last
+
+    def apply_raise(self):
+        self.pay = int(self.pay * self.raise_amount)
+
+class Developer(Employee):
+    raise_amount = 1.10
+
+    def __init__(self, first, last, pay, prog_lang):
+        super().__init__(first, last, pay)
+        self.prog_lang = prog_lang
+
+class Manager(Employee):
+    def __init__(self, first, last, pay, employees = None):
+        super().__init__(first, last, pay)
+        if employees == None:
+            self.employees = []
+        else:
+            self.employees = employees
+
+    #methods
+    def add_employee(self, emp):
+        if emp not in self.employees:
+            self.employees.append(emp)
+
+    def remove_employee(self, emp):
+        if emp in self.employees:
+            self.employees.remove(emp)
+
+    def print_emp(self):
+        for emp in self.employees:
+            print("--> ", emp.fullname())
+
+dev1 = Developer("Alice", "Sharma", 50000, "Python")
+dev2 = Developer("Bob", "Gupta", 60000, "Java")
+
+mang1 = Manager("Bob", "Parker", 60000, employees=[dev1])
+
+#print("Developer " , dev1.email, " ProgLang: ", dev1.prog_lang)
+#o/p: Developer  Alice.Sharma@company.com  ProgLang:  Python
+
+mang1.print_emp()
+#o/p: -->  Alice Sharma
+
+print(mang1.email)
+#o/p: Bob.Parker@company.com
+
+mang1.add_employee(dev2)
+mang1.print_emp()
+#o/p:
+#-->  Alice Sharma
+#-->  Bob Gupta
+
+print(isinstance(mang1, Developer))
+print(isinstance(mang1, Manager))
+print(isinstance(Developer, Manager))
+
+--o/p--
+-->  Alice Sharma
+Bob.Parker@company.com
+-->  Alice Sharma
+-->  Bob Gupta
+False
+True
+False
+
+10) #IMP Special (Magic/Dunder) Methods
+__init__ is one of the Dunder methods
+
+11) #IMP __repr__ and __str__
+Example:
+class Employee:
+    num_of_employee = 0
+    raise_amount = 1.04
+
+    def __init__(self, first, last, pay):
+        self.first = first
+        self.last = last
+        self.pay = pay
+        self.email = first + "." + last + "@company.com"
+        Employee.num_of_employee += 1  # using self doesn't help
+
+    def fullname(self):
+        return self.first + " " + self.last
+
+    def apply_raise(self):
+        self.pay = int(self.pay * self.raise_amount)
+
+    def __repr__(self):
+        return "Employee  " + self.first + " " + self.last + " " + str(self.pay)
+
+    def __str__(self):
+        return "Email " + self.email + " " + self.fullname()
+
+
+dev1 = Employee("Alice", "Sharma", 50000)
+dev2 = Employee("Bob", "Gupta", 60000)
+
+print(repr(dev1))  # Calls __repr__
+print(dev1.__repr__())
+print(dev1)  # Calls __str__ implicitly
+print(dev1.__str__())
+print(str(dev2))  # Calls __str__
+
+---o/p---
+Employee  Alice Sharma 50000
+Employee  Alice Sharma 50000
+Email Alice.Sharma@company.com Alice Sharma
+Email Alice.Sharma@company.com Alice Sharma
+Email Bob.Gupta@company.com Bob Gupta
+
+12) __repr__ v/s __str___
+__repr__ unamibquous representation of the object Used for debugging (for developer)
+__str__ (for enduser) and is string representation of object
+
+
+13) #IMP we can create more dunder methods
+__add__(self, other)
+__len__(self)
+
+
+14) #IMP Property decorators: getter, setter and Deleters
+#IMP property decorator
+Property decorator allows us to define a method that we can
+access like an attribute
+
+#Property example:
+class Employee:
+
+    def __init__(self, first, last):
+        self.first = first
+        self.last = last
+
+    @property
+    def email(self):
+        return self.first + "." + self.last + "@company.com"
+
+    def fullname(self):
+        return self.first + " " + self.last
+
+
+emp1 = Employee("Alice", "Sharma")
+
+emp1.first = "Kapil"
+
+print(emp1.first)
+print(emp1.email)  # No need for email() because its a property now
+print(emp1.fullname())
+
+---o/p----
+Kapil
+Kapil.Sharma@company.com
+Kapil Sharma
+
+15) #IMP setter and deleter
+class Employee:
+
+    def __init__(self, first, last):
+        self.first = first
+        self.last = last
+
+    @property
+    def email(self):
+        return self.first + "." + self.last + "@company.com"
+
+    @property
+    def fullname(self):
+        return self.first + " " + self.last
+
+    @fullname.setter
+    def fullname(self,name):
+        first, last = name.split(" ")
+        self.first = first
+        self.last = last
+
+    @fullname.deleter
+    def fullname(self):
+        print("Delete Name!")
+        self.first = None
+        self.last = None
+
+emp1 = Employee("Alice", "Sharma")
+emp1.first = "Kapil"
+
+emp1.fullname = "James Bond" #Using setter
+
+print(emp1.first)
+print(emp1.email)  # No need for email() because its a property now
+print(emp1.fullname)
+
+del emp1.fullname #Calls deleter decorator function
+
+--o/p--
+James
+James.Bond@company.com
+James Bond
+Delete Name!
+
+
+*********previous notes on OOPs*************
+
+1)
+#Example
+class Character:
+    def __init__(self, name, initial_health):
+        self.name = name
+        self.health = initial_health
+        self.inventory = []
+        
+    def __str__(self):
+        s = "Name: " + self.name
+        s += " Health: " + str(self.health)
+        s += " Inventory: " + str(self.inventory)
+        return s
+        
+    def grab(self, item):
+        self.inventory.append(item)
+        
+    def get_health(self):
+        return self.health
+        
+-------after above class definition
+
+>>> me = Character("Bob", 20)
+>>> print(str(me))
+Name: Bob Health: 20 Inventory: []
+>>> 
+>>> me.grab(10)
+>>> print(str(me))
+Name: Bob Health: 20 Inventory: [10]
+>>> h = me.get_health()
+>>> h
+20
+>>> me.grab("pen")
+>>> print(str(me))
+Name: Bob Health: 20 Inventory: [10, 'pen']
+  
+
+2)
+We can inherit a class from built-in list/
+>>class NamedList(list):
+    def __init__(self, a_name):
+        list.__init__([])
+        self.name = a_name
+>>> johnny = NamedList("John Paul Jones")
+>>> type(johnny)
+<class '__main__.NamedList'>
+
+>>> johnny.append("Bass Player")
+>>> johnny.extend(['Composer', "Arranger", "Musician"])
+>>> johnny
+['Bass Player', 'Composer', 'Arranger', 'Musician']
+>>> johnny.name
+'John Paul Jones'
+
+>>> for attr in johnny:
+        print(johnny.name + " is a " + attr + ".")
+
+John Paul Jones is a Bass Player.
+John Paul Jones is a Composer.
+John Paul Jones is a Arranger.
+John Paul Jones is a Musician.
+
+3)
+if you save your AthleteList class to a file
+called athletelist.py, you can import the into your code
+using this line of code:
+    from athletelist import AthleteList
+then use the class as if it was defined in your current program
+    
+4)
+#IMP: Inheritance, function override
+class Employee(object):
+  """Models real-life employees!"""
+  def __init__(self, employee_name):
+    self.employee_name = employee_name
+
+  def calculate_wage(self, hours):
+    self.hours = hours
+    return hours * 20.00
+
+# Below is inherited class
+class PartTimeEmployee(Employee):
+  def calculate_wage(self, hours):
+    self.hours = hours
+    return hours * 12.00
+	
+5.) #IMP
+We can directly access the attributes or methods of a superclass with Python's built-in super call.
+# Example:
+class Employee(object):
+  """Models real-life employees!"""
+  def __init__(self, employee_name):
+    self.employee_name = employee_name
+
+  def calculate_wage(self, hours):
+    self.hours = hours
+    return hours * 20.00
+
+# Add your code below!
+class PartTimeEmployee(Employee):
+  def calculate_wage(self, hours):
+    self.hours = hours
+    return hours * 12.00
+  
+  def full_time_wage(self, hours):
+    self.hours = hours
+    return super(PartTimeEmployee,self).calculate_wage(hours)
+  
+milton = PartTimeEmployee("Vijay")
+print milton.full_time_wage(10)
+
+# Output: 200.00
+
+6.) #IMP __repr__ function
+
+class Point3D(object):
+  def __init__(self, x, y, z):
+    self.x =  x
+    self.y = y
+    self.z = z
+    
+  def __repr__(self):
+    return "(%d, %d, %d)" % (self.x, self.y, self.z)
+  
+my_point = Point3D(1, 2, 3)
+  
+print my_point
